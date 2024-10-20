@@ -1,0 +1,159 @@
+/* src/navbar.css */
+/* src/navbar.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #007bff; /* Change to a primary blue background */
+    padding: 20px; /* Increased padding for height */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space out items */
+    align-items: center; /* Center vertically */
+}
+
+.logo-container {
+    display: flex; /* Flexbox for logo and company name */
+    align-items: center; /* Center items vertically */
+}
+
+.logo {
+    height: 40px; /* Set logo height */
+    margin-right: 10px;
+    border-radius: 50%;/* Space between logo and company name */
+}
+
+.company-name {
+    font-size: 20px; /* Reduced font size for company name */
+    color: #fff; /* Change text color to white */
+    margin: 0; /* Remove margin */
+}
+
+/* ... rest of your existing CSS ... */
+
+.navbar {
+    background-color: #007bff; /* Change to a primary blue background */
+    padding: 20px; /* Increased padding for height */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space out items */
+    align-items: center; /* Center vertically */
+}
+
+.company-name {
+    font-size: 25px; /* Reduced font size for company name */
+    color: #fff; /* Change text color to white */
+    margin: 0; /* Remove margin */
+}
+
+.search-container {
+    display: flex; /* Flexbox for search input */
+    align-items: center; /* Center vertically */
+}
+
+.search-input {
+    padding: 10px; /* Padding for input */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    margin-right: 10px; /* Space between input and button */
+    font-size: 14px; /* Font size for input */
+}
+
+.search-button {
+    padding: 10px 15px; /* Padding for button */
+    background-color: #ffcc00; /* Yellow background for button */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    color: #333; /* Dark color for button text */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.search-button:hover {
+    background-color: #f0f8ff; /* Lighten button on hover */
+}
+
+.nav-items {
+    list-style: none;
+    padding: 0;
+    display: flex; /* Flexbox for horizontal layout */
+    margin: 0; /* Remove margin */
+}
+
+.nav-items li {
+    margin: 0 20px; /* Increased margin for spacing between items */
+    position: relative; /* For dropdown positioning */
+}
+
+.nav-items a {
+    text-decoration: none;
+    color: #fff; /* Change text color to white */
+    font-size: 16px; /* Reduced font size for main nav items */
+    display: flex;
+    align-items: center;
+    transition: color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
+}
+
+.nav-items a i {
+    margin-right: 8px; /* Space between icon and text in nav items */
+}
+
+.nav-items a:hover {
+    color: #ffcc00; /* Change color on hover */
+    transform: scale(1.1); /* Scale effect on hover */
+}
+
+.nav-items li:hover::after {
+    content: ''; /* Create a pseudo-element */
+    position: absolute;
+    width: 100%; /* Full width */
+    height: 2px; /* Height of the underline */
+    background-color: #ffcc00; /* Color for the underline on hover */
+    bottom: -5px; /* Position below the item */
+    left: 0; /* Align to the left */
+    transition: width 0.3s; /* Smooth transition for the underline */
+}
+
+.nav-items li:hover::after {
+    width: 100%; /* Underline full width on hover */
+}
+
+.dropdown-menu {
+    display: flex; /* Flexbox for horizontal layout */
+    flex-direction: column; /* Vertical alignment */
+    position: absolute; /* Position absolute for dropdown */
+    top: 100%; /* Position below the nav item */
+    left: 0; /* Align to the left */
+    background-color: #fff; /* White background for dropdown */
+    border: 1px solid #ccc; /* Border for dropdown */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    z-index: 1000; /* Bring dropdown above other content */
+    padding: 10px 0; /* Padding for dropdown */
+    margin: 0; /* Remove margin */
+    list-style: none; /* Remove list styling */
+    opacity: 0; /* Hide initially */
+    transition: opacity 0.3s ease; /* Smooth transition for dropdown */
+}
+
+.dropdown-menu li {
+    padding: 10px 20px; /* Padding for dropdown items */
+}
+
+.dropdown-menu li a {
+    color: #333; /* Color for dropdown items */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items */
+    font-size: 14px; /* Reduced font size for dropdown items */
+}
+
+.dropdown-menu li a i {
+    margin-right: 8px; /* Space between icon and text in dropdown */
+}
+
+.dropdown-menu li a:hover {
+    color: #007bff; /* Change color on hover for dropdown items */
+    background-color: #f0f8ff; /* Change background on hover for dropdown items */
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1; /* Show dropdown on hover */
+}
