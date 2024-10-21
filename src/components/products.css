@@ -1,0 +1,24 @@
+/* src/ProductCard.css (or a separate CSS file) */
+.header-title {
+    font-size: 24px; /* Font size for the header */
+    font-weight: bold;
+    color: transparent; /* Make text color transparent for gradient effect */
+    text-align: center; /* Center align text */
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #1e3c72, #2a5298); /* Blue gradient color */
+    -webkit-background-clip: text; /* Clip the background to the text */
+    background-clip: text; /* For non-WebKit browsers */
+    animation: slideInDown 0.6s ease forwards; /* Animation for the header */
+}
+
+/* Animation for the header text */
+@keyframes slideInDown {
+    from {
+        transform: translateY(-20px); /* Start slightly above */
+        opacity: 0; /* Start invisible */
+    }
+    to {
+        transform: translateY(0); /* End at original position */
+        opacity: 1; /* End visible */
+    }
+}

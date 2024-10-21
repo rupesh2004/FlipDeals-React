@@ -1,5 +1,4 @@
 /* src/navbar.css */
-/* src/navbar.css */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -11,6 +10,10 @@ body {
     display: flex; /* Use flexbox for layout */
     justify-content: space-between; /* Space out items */
     align-items: center; /* Center vertically */
+    position: sticky; /* Make the navbar sticky */
+    top: 0; /* Stick to the top of the viewport */
+    z-index: 1000; /* Ensure it stays above other content */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
 }
 
 .logo-container {
@@ -21,27 +24,11 @@ body {
 .logo {
     height: 40px; /* Set logo height */
     margin-right: 10px;
-    border-radius: 50%;/* Space between logo and company name */
+    border-radius: 50%; /* Space between logo and company name */
 }
 
 .company-name {
     font-size: 20px; /* Reduced font size for company name */
-    color: #fff; /* Change text color to white */
-    margin: 0; /* Remove margin */
-}
-
-/* ... rest of your existing CSS ... */
-
-.navbar {
-    background-color: #007bff; /* Change to a primary blue background */
-    padding: 20px; /* Increased padding for height */
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-between; /* Space out items */
-    align-items: center; /* Center vertically */
-}
-
-.company-name {
-    font-size: 25px; /* Reduced font size for company name */
     color: #fff; /* Change text color to white */
     margin: 0; /* Remove margin */
 }
@@ -60,12 +47,16 @@ body {
 }
 
 .search-button {
-    padding: 10px 15px; /* Padding for button */
+    padding: 10px; /* Padding for button */
     background-color: #ffcc00; /* Yellow background for button */
     border: none; /* Remove default border */
     border-radius: 5px; /* Rounded corners */
     color: #333; /* Dark color for button text */
     cursor: pointer; /* Pointer cursor on hover */
+}
+
+.search-button i {
+    font-size: 16px; /* Adjust icon size */
 }
 
 .search-button:hover {

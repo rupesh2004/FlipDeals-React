@@ -1,8 +1,8 @@
-// src/Navbar.js
 import React, { useState } from 'react';
 import 'font-awesome/css/font-awesome.min.css';
 import './navbar.css'; // Import CSS for Navbar styles
 import logo from './images/logo.jpeg'; // Import your logo
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const Navbar = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -28,19 +28,21 @@ const Navbar = () => {
                         value={searchTerm} 
                         onChange={(e) => setSearchTerm(e.target.value)} 
                     />
-                    <button type="submit" className="search-button">Search</button>
+                    <button type="submit" className="search-button">
+                        <i className="fa fa-search"></i> {/* Font Awesome search icon */}
+                    </button>
                 </form>
             </div>
             <ul className="nav-items">
                 <li>
-                    <a href="#home">
+                    <Link to="/">
                         <i className="fa fa-home"></i> Home
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#products">
+                    <Link to="/upload">
                         <i className="fa fa-box"></i> Products
-                    </a>
+                    </Link>
                 </li>
                 <li className="dropdown">
                     <a href="#categories">
