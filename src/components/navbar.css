@@ -11,9 +11,10 @@ body {
     justify-content: space-between; /* Space out items */
     align-items: center; /* Center vertically */
     position: sticky; /* Make the navbar sticky */
-    top: 0; /* Stick to the top of the viewport */
+    top: 0; /* Stick to the top */
     z-index: 1000; /* Ensure it stays above other content */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+    border-radius:0 0 20px 20px/* Add box shadow */
 }
 
 .logo-container {
@@ -23,12 +24,12 @@ body {
 
 .logo {
     height: 40px; /* Set logo height */
-    margin-right: 10px;
-    border-radius: 50%; /* Space between logo and company name */
+    margin-right: 10px; /* Space between logo and company name */
+    border-radius: 50%; /* Round logo corners */
 }
 
 .company-name {
-    font-size: 20px; /* Reduced font size for company name */
+    font-size: 25px; /* Font size for company name */
     color: #fff; /* Change text color to white */
     margin: 0; /* Remove margin */
 }
@@ -47,16 +48,12 @@ body {
 }
 
 .search-button {
-    padding: 10px; /* Padding for button */
+    padding: 10px 15px; /* Padding for button */
     background-color: #ffcc00; /* Yellow background for button */
     border: none; /* Remove default border */
     border-radius: 5px; /* Rounded corners */
     color: #333; /* Dark color for button text */
     cursor: pointer; /* Pointer cursor on hover */
-}
-
-.search-button i {
-    font-size: 16px; /* Adjust icon size */
 }
 
 .search-button:hover {
@@ -78,7 +75,7 @@ body {
 .nav-items a {
     text-decoration: none;
     color: #fff; /* Change text color to white */
-    font-size: 16px; /* Reduced font size for main nav items */
+    font-size: 16px; /* Font size for main nav items */
     display: flex;
     align-items: center;
     transition: color 0.3s, transform 0.3s; /* Smooth transition for hover effect */

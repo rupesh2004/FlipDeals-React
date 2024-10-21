@@ -1,4 +1,12 @@
-/* styles.css */
+/* styles.css or App.css */
+
+/* Set a faint gradient background for the entire app */
+body {
+  background: linear-gradient(to bottom right, rgba(30, 60, 114, 0.1), rgba(42, 82, 152, 0.1)); /* Adjust the alpha values for faintness */
+  min-height: 100vh; /* Ensure the body takes at least full viewport height */
+  margin: 0; /* Remove default margin */
+}
+
 .product-list {
   display: flex; /* Use flexbox */
   justify-content: center; /* Center the items horizontally */

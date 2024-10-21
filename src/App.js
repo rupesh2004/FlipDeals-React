@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+// src/App.js
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/navbar.js';
+import Products from './components/products.js';
+import Footer from './components/footer.js' // Adjust path as needed
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [searchTerm, setSearchTerm] = useState('');
+
+    return (
+        <Router>
+            <div>
+                <Navbar setSearchTerm={setSearchTerm} />
+                <Routes>
+                    <Route path='/' element={<Products searchTerm={searchTerm} />} />
+                    {/* Add other routes as needed */}
+                </Routes>
+                <Footer />
+            </div>
+        </Router>
+    );
 }
 
 export default App;

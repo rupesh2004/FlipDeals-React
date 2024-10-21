@@ -1,88 +1,92 @@
-/* src/ProductCard.css */
 @keyframes slideInLeft {
-    from {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes slideInRight {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-.header-title {
-    font-size: 24px; /* Font size for the header */
-    font-weight: bold;
-    color: transparent; /* Make text color transparent for gradient effect */
-    text-align: center; /* Center align text */
-    margin-bottom: 20px;
-    background: linear-gradient(45deg, #4a90e2, #00c6ff); /* Gradient color */
-    -webkit-background-clip: text; /* Clip the background to the text */
-    background-clip: text; /* For non-WebKit browsers */
-    animation: slideInLeft 0.6s ease; /* Slide-in animation for the header */
+/* Container layout to display products in a row */
+.product-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .product-card {
-    width: 180px; /* Fixed width */
-    height: 190px; /* Reduced height for uniformity */
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* padding: 20px; */
-    padding-top : 10px;
-    padding-left: 10px;
-    padding-right:10px;
-    margin: 0 auto; /* Center align the cards */
-    text-align: center;
-    background-color: #f9f9f9;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    opacity: 0;
-    animation: slideInRight 0.6s ease forwards; /* Slide-in animation for the product */
+  width: 180px; /* Fixed width */
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  background-color: #f9f9f9;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  animation: slideInRight 0.6s ease forwards;
 }
 
 .product-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    background-color: #e6f7ff; /* Change background color on hover */
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  background-color: #e6f7ff;
+  cursor:pointer;
 }
 
 .product-image {
-    width: 100%;
-    height: 120px; /* Reduced height for images */
-    object-fit: cover; /* Ensures the image covers the area without distortion */
-    border-radius: 8px;
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Added transform for scaling effect */
+  width: 100%;
+  height: 100px; /* Set a fixed height for the image */
+  object-fit: contain; /* Ensure the entire image fits without distortion */
+  object-position: top; /* Align the image to the top of the container */
+  border-radius: 8px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .product-card:hover .product-image {
-    opacity: 0.9;
-    transform: scale(1.1); /* Scale image on hover */
+  opacity: 0.9;
+  transform: scale(1.1);
 }
 
 .product-name {
-    font-size: 15px;
-    color: #333;
-    margin: 10px 0;
-    transition: color 0.3s ease;
+  font-size: 15px;
+  color: #333;
+  margin: 10px 0;
+  transition: color 0.3s ease;
 }
 
 .product-card:hover .product-name {
-    color: #007bff;
+  color: #007bff;
 }
 
 .product-price {
-    font-size: 13px;
-    color: #007bff;
-    margin: 5px 0;
+  font-size: 13px;
+  color: #007bff;
+  margin: 5px 0;
+}
+
+.header-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: transparent;
+  background: linear-gradient(45deg, #4a90e2, #00c6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: slideInLeft 0.6s ease;
 }

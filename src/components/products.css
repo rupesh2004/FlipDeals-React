@@ -1,10 +1,27 @@
 /* src/ProductCard.css (or a separate CSS file) */
+/* src/products.css */
+
+.product-list {
+    margin: 20px;
+}
+
+.category-section {
+    margin-bottom: 40px; /* Space between different categories */
+}
+
+.product-row {
+    display: flex; /* Use flexbox for horizontal layout */
+    justify-content: flex-start; /* Align products to the left */
+    flex-wrap: wrap; /* Allow wrapping to the next line if too many */
+    margin-left: 30px;
+}
+
 .header-title {
     font-size: 24px; /* Font size for the header */
     font-weight: bold;
     color: transparent; /* Make text color transparent for gradient effect */
     text-align: center; /* Center align text */
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Space between header and products */
     background: linear-gradient(45deg, #1e3c72, #2a5298); /* Blue gradient color */
     -webkit-background-clip: text; /* Clip the background to the text */
     background-clip: text; /* For non-WebKit browsers */
@@ -21,4 +38,9 @@
         transform: translateY(0); /* End at original position */
         opacity: 1; /* End visible */
     }
+}
+
+/* Product Card Styles */
+.product-card {
+    margin-right: 20px; /* Space between product cards */
 }

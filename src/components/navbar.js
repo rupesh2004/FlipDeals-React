@@ -1,18 +1,11 @@
+// src/components/Navbar.js
 import React, { useState } from 'react';
 import 'font-awesome/css/font-awesome.min.css';
 import './navbar.css'; // Import CSS for Navbar styles
 import logo from './images/logo.jpeg'; // Import your logo
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
-const Navbar = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-
-    const handleSearch = (event) => {
-        event.preventDefault();
-        // Implement your search functionality here
-        console.log('Search Term:', searchTerm);
-    };
-
+const Navbar = ({ setSearchTerm }) => {
     return (
         <nav className="navbar">
             <div className="logo-container">
@@ -20,16 +13,15 @@ const Navbar = () => {
                 <h1 className="company-name">FlipDeals</h1>
             </div>
             <div className="search-container">
-                <form onSubmit={handleSearch}>
+                <form onSubmit={(e) => e.preventDefault()}>
                     <input 
                         type="text" 
                         className="search-input" 
                         placeholder="Search..." 
-                        value={searchTerm} 
                         onChange={(e) => setSearchTerm(e.target.value)} 
                     />
                     <button type="submit" className="search-button">
-                        <i className="fa fa-search"></i> {/* Font Awesome search icon */}
+                        <i className="fa fa-search"></i>
                     </button>
                 </form>
             </div>
