@@ -1,4 +1,4 @@
-/* styles.css or App.css */
+/* styles.css or App.css
 
 /* Set a faint gradient background for the entire app */
 body {
@@ -14,4 +14,4 @@ body {
   flex-wrap: wrap; /* Allow wrapping of items to the next line if needed */
   margin: 20px; /* Optional: Add some margin */
   gap: 20px; /* Optional: Space between items */
-}
+} 

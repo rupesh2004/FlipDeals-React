@@ -5,6 +5,8 @@ import Navbar from './components/navbar.js';
 import Products from './components/products.js';
 import Footer from './components/footer.js' // Adjust path as needed
 import './App.css';
+import LoginForm from './components/loginForm.js'
+// import ProductCarousel from './components/productSlider.js';
 
 function App() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -15,6 +17,8 @@ function App() {
                 <Navbar setSearchTerm={setSearchTerm} />
                 <Routes>
                     <Route path='/' element={<Products searchTerm={searchTerm} />} />
+
+                    <Route path = '/signup' element = {<LoginForm/>}/>
                     {/* Add other routes as needed */}
                 </Routes>
                 <Footer />

@@ -1,5 +1,5 @@
 // src/components/Navbar.js
-import React, { useState } from 'react';
+import React from 'react';
 import 'font-awesome/css/font-awesome.min.css';
 import './navbar.css'; // Import CSS for Navbar styles
 import logo from './images/logo.jpeg'; // Import your logo
@@ -48,9 +48,9 @@ const Navbar = ({ setSearchTerm }) => {
                     </ul>
                 </li>
                 <li>
-                    <a href="#signin">
+                    <Link to="/signup"> {/* Fixed Link path */}
                         <i className="fa fa-sign-in"></i> Sign In
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </nav>
