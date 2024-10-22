@@ -4,7 +4,7 @@ import './footer.css'; // Import the CSS for styling
 import logo from './images/logo.jpeg'; // Adjust the path to your logo image
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faInfoCircle, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons'; // Solid icons
-import { faFacebook, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'; // Brand icons
+import { faGithub, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'; // Brand icons
 
 const Footer = () => {
     return (
@@ -26,10 +26,10 @@ const Footer = () => {
                 <div className="footer-social-media">
                     <h2 className="footer-title">Follow Us</h2>
                     <ul className="social-media-list">
-                        <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faFacebook} /> Facebook</a></li>
+                        <li><a href="https://www.github.com/rupesh2004" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faGithub} /> GitHub</a></li>
                         <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faTwitter} /> Twitter</a></li>
-                        <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram} /> Instagram</a></li>
-                        <li><a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedin} /> LinkedIn</a></li>
+                        <li><a href="https://www.instagram.com/_rupesh_bhosale_" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram} /> Instagram</a></li>
+                        <li><a href="https://www.linkedin.com/in/rupeshkumar-bhosale-681b63255/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedin} /> LinkedIn</a></li>
                     </ul>
                 </div>
             </div>
