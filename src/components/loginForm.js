@@ -12,9 +12,18 @@ const LoginForm = () => {
       setError("Please enter both email and password");
       return;
     }
-    // You can add your authentication logic here
     console.log("Login successful with email:", email, "and password:", password);
     setError(""); // Reset error on successful submission
+  };
+
+  const handleForgotPassword = () => {
+    console.log("Forgot password clicked");
+    window.location.href = "/forgotPassword"; // Corrected 'href'
+  };
+
+  const handleCreateAccount = () => {
+    console.log("Create account clicked");
+    window.location.href = "/signup"; // Add actual redirection to sign up page
   };
 
   return (
@@ -29,6 +38,7 @@ const LoginForm = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            autoComplete="off"
             placeholder="Enter your email"
             required
           />
@@ -40,12 +50,28 @@ const LoginForm = () => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            autoComplete="off"
             placeholder="Enter your password"
             required
           />
         </div>
-        <button type="submit" className="login-btn">Login</button>
+        <button
+          type="button"
+          onClick={handleForgotPassword}
+          className="forgot-password-btn"
+        >
+          Forgot Password?
+        </button>
+        <button type="submit" className="login-btn">
+          Login
+        </button>
       </form>
+      <p>
+        Don't have an account?{" "}
+        <a href="/signup" onClick={handleCreateAccount} className="create-account-link">
+          Sign Up
+        </a>
+      </p>
     </div>
   );
 };

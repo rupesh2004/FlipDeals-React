@@ -1,70 +1,164 @@
 /* Login Form Container */
 .login-container {
-    width: 100%;
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+  animation: fadeIn 1s ease-out;
+}
+
+/* Login Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight : bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Input Fields */
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* Input Hover Effect */
+.form-group input:hover {
+  border-color: #007bff;
+  background-color: #f1f8ff;
+}
+
+/* Input Focus Effect with Before and After Pseudo-elements */
+.form-group input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  background-color: white;
+  outline: none;
+}
+
+.form-group input:focus::before,
+.form-group input:focus::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  top: 0;
+  left: 0;
+  border: 2px solid #007bff;
+  z-index: -1;
+  animation: borderExpand 0.3s ease-out forwards;
+}
+
+/* Pseudo-element animation */
+@keyframes borderExpand {
+  0% {
+    transform: scale(1);
+    opacity: 0;
   }
-  
-  .login-container h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
+  100% {
+    transform: scale(1.1);
+    opacity: 1;
   }
-  
-  /* Login Form */
-  .login-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Form Group */
-  .form-group {
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  .form-group label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 5px;
-    color: #333;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  /* Login Button */
-  .login-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .login-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Error Message */
-  .error {
-    color: #ff0000;
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
+}
+
+.form-group input:focus::before {
+  border-top-color: transparent;
+  border-left-color: transparent;
+}
+
+.form-group input:focus::after {
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+}
+
+/* Login Button */
+.login-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Error Message */
+.error {
+  color: #ff0000;
+  font-size: 14px;
+  margin-bottom: 10px;
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Forgot Password Positioning */
+.forgot-password-btn {
+  text-align: right;
+  font-size: 0.9rem;
+  color: #007bff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  transition: color 0.3s ease;
+}
+
+.forgot-password-btn:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+/* Create Account Link Styling */
+.create-account-link {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.create-account-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}

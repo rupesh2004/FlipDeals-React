@@ -48,7 +48,7 @@ const Navbar = ({ setSearchTerm }) => {
                     </ul>
                 </li>
                 <li>
-                    <Link to="/signup"> {/* Fixed Link path */}
+                    <Link to="/signin"> {/* Fixed Link path */}
                         <i className="fa fa-sign-in"></i> Sign In
                     </Link>
                 </li>

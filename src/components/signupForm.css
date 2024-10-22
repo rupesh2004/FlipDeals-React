@@ -1,0 +1,143 @@
+/* Signup Form Container */
+.signup-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+  
+.signup-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    animation: fadeIn 1s ease-out;
+}
+  
+/* Signup Form */
+.signup-form, .otp-form {
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.8s ease-out;
+}
+  
+/* Form Group */
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+    text-align: left;
+}
+  
+.form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}
+  
+/* Input Fields */
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+  
+/* Input Hover Effect */
+.form-group input:hover {
+    border-color: #007bff;
+    background-color: #f1f8ff;
+}
+  
+/* Input Focus Effect */
+.form-group input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    background-color: white;
+    outline: none;
+}
+  
+/* Signup and Verify Button */
+.signup-btn, .verify-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+  
+.signup-btn:hover, .verify-btn:hover {
+    background-color: #0056b3;
+}
+  
+/* Already Have an Account (Login Redirect) */
+p {
+    margin-top: 20px;
+}
+  
+p a {
+    color: #007bff;
+    text-decoration: none;
+}
+  
+p a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+  
+.login-redirect-btn {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: inline-block;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+  
+.login-redirect-btn:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+  
+/* Error Message */
+.error {
+    color: #ff0000;
+    font-size: 14px;
+    margin-bottom: 10px;
+    animation: fadeIn 0.5s ease-in;
+}
+  
+/* Success Message */
+.success-message {
+    color: #28a745;
+    font-size: 16px;
+    margin-top: 10px;
+    animation: fadeIn 0.5s ease-in;
+}
+  
+/* Fade-In Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
