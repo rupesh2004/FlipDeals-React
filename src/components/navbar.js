@@ -32,10 +32,11 @@ const Navbar = ({ setSearchTerm }) => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/upload">
-                        <i className="fa fa-box"></i> Products
+                    <Link to="/uploadProducts">
+                        <i className="fa fa-items"></i> Products 
                     </Link>
                 </li>
+                
                 <li className="dropdown">
                     <a href="#categories">
                         <i className="fa fa-th-list"></i> Categories
@@ -44,11 +45,11 @@ const Navbar = ({ setSearchTerm }) => {
                         <li><a href="#mobiles"><i className="fa fa-mobile"></i> Mobiles</a></li>
                         <li><a href="#headphones"><i className="fa fa-headphones"></i> Headphones</a></li>
                         <li><a href="#laptops"><i className="fa fa-laptop"></i> Laptops</a></li>
-                        <li><a href="#smartwatches"><i className="fa fa-watch"></i> Smart Watches</a></li>
+                        <li><a href="#smartwatches"><i className="fa fa-watch"></i> Smart Watches</a></li> {/* Updated with smartwatch icon */}
                     </ul>
                 </li>
                 <li>
-                    <Link to="/signin"> {/* Fixed Link path */}
+                    <Link to="/signin">
                         <i className="fa fa-sign-in"></i> Sign In
                     </Link>
                 </li>

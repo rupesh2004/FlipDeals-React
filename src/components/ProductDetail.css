@@ -1,0 +1,195 @@
+/* src/components/ProductDetail.css */
+body {
+    background-color: white;
+}
+
+.product-detail-container {
+    display: flex;
+    flex-direction: column; /* Vertical alignment */
+    padding: 40px;
+    gap: 30px;
+    animation: slideInFromLeft 0.7s ease; /* Animation for sliding in */
+    position: relative; /* Make container relative for go-back positioning */
+    align-items: center; /* Center-align all items horizontally */
+}
+
+.go-back-btn {
+    position: absolute; /* Keep button at the top left */
+    top: 20px;
+    left: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Spacing between icon and text */
+    animation: bounceIn 1s ease; /* Animation for the Go Back button */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background color and scale */
+}
+
+.go-back-btn i {
+    font-size: 20px;
+}
+
+.go-back-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+.product-detail-content {
+    display: flex; /* Use flexbox to arrange image and info side by side */
+    align-items: flex-start; /* Align items to the top */
+    gap: 30px; /* Space between image and info */
+}
+
+.product-detail-image {
+    width: 250px; /* Adjust the image size */
+    height: auto;
+    border-radius: 10px;
+    animation: fadeIn 0.5s ease; /* Image fade-in effect */
+    transition: transform 0.3s ease;
+}
+
+.product-detail-image:hover {
+    transform: scale(1.05); /* Scale effect on hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column; /* Ensure vertical stacking of product info */
+    align-items: center; /* Center-align text and buttons */
+    text-align: center; /* Center-align text */
+    animation: slideInFromRight 0.7s ease; /* Product info sliding animation */
+}
+
+.product-detail-name {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.product-detail-price {
+    font-size: 22px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.product-detail-description {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.color-options {
+    display: flex; /* Arrange color options in a row */
+    gap: 10px; /* Space between color options */
+    margin-bottom: 20px; /* Space below color options */
+}
+
+.color-option {
+    width: 30px; /* Width of color options */
+    height: 30px; /* Height of color options */
+    border-radius: 50%; /* Make them circular */
+    border: 2px solid transparent; /* Border to indicate selection */
+    cursor: pointer; /* Change cursor on hover */
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+.color-option.selected {
+    border-color: #000; /* Change border color when selected */
+}
+
+/* Button Container for Buy Now and Cancel Order */
+.button-container {
+    display: flex; /* Use flexbox to arrange buttons in a row */
+    justify-content: center; /* Center-align buttons */
+    gap: 20px; /* Space between buttons */
+}
+
+.buy-now-btn, .cancel-order-btn {
+    width: 150px; /* Increase button width */
+    padding: 12px 0; /* Adjust padding for consistency */
+}
+
+/* Buy Now Button */
+.buy-now-btn {
+    padding: 12px 24px;
+    background-color: #28a745; /* Bootstrap success color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.buy-now-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: scale(1.05); /* Scale effect on hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+}
+
+/* Cancel Order Button */
+.cancel-order-btn {
+    padding: 12px 24px;
+    background-color: #dc3545; /* Bootstrap danger color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.cancel-order-btn:hover {
+    background-color: #c82333; /* Darker red on hover */
+    transform: scale(1.05); /* Scale effect on hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+}
+
+/* Keyframes for animations */
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bounceIn {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}

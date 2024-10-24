@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "./forgotPassword.css"; // Make sure to have styles similar to the signup form
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import "./forgotPassword.css";
 
 const ForgotPasswordForm = () => {
   const [email, setEmail] = useState("");
@@ -7,19 +8,41 @@ const ForgotPasswordForm = () => {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  // Initialize the useNavigate hook
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !newPassword) {
       setError("Please fill in all fields");
       return;
     }
 
-    // Simulate password reset logic
-    console.log("Password reset for:", { email, newPassword });
-    setSuccessMessage("Your password has been successfully reset!");
-    setError(""); // Clear error
-    setEmail(""); // Clear email input
-    setNewPassword(""); // Clear password input
+    try {
+      const response = await fetch("http://localhost:5000/reset-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, newPassword }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setSuccessMessage(data.message);
+        setEmail(""); // Clear email input
+        setNewPassword(""); // Clear password input
+        
+        // Redirect to login after successful password reset
+        setTimeout(() => {
+          navigate("/signin"); // Navigate to the login page
+        }, 2000); // Optional delay before redirecting
+      } else {
+        setError(data.message || "Error resetting password");
+      }
+    } catch (error) {
+      setError("Error resetting password");
+    }
   };
 
   return (

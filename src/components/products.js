@@ -6,7 +6,7 @@ import './products.css';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const categories = ["Laptops", "Mobiles", "Headphones", "Smart Watches  "]; // Array of headers
+  const categories = ["Laptops", "Mobiles", "Headphones", "Smart Watches"]; // Array of headers
 
   // Fetch products from the backend
   useEffect(() => {
@@ -37,6 +37,7 @@ const Products = () => {
                   {categoryProducts.map((product) => (
                     <ProductCard
                       key={product._id}
+                      productId={product._id} // Pass product ID to ProductCard
                       productImage={product.productImage}
                       productName={product.productName}
                       productPrice={product.productPrice}

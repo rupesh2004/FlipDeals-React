@@ -1,17 +1,42 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./loginForm.css";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate(); // Initialize useNavigate
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (email === "" || password === "") {
       setError("Please enter both email and password");
       return;
     }
+
+    try {
+      const response = await fetch("http://localhost:5000/signin", { // Use the correct API endpoint
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        alert("User logged in successfully");
+        setEmail("");
+        setPassword("");
+        navigate("/"); // Redirect to home after successful login
+      } else {
+        setError(data.error || "Login failed"); // Adjusted error handling
+      }
+    } catch (error) {
+      setError("Error logging in");
+    }
+
     console.log("Login successful with email:", email, "and password:", password);
     setError(""); // Reset error on successful submission
   };
