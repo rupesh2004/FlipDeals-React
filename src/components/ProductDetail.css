@@ -1,195 +1,195 @@
-/* src/components/ProductDetail.css */
-body {
-    background-color: white;
-}
-
+/* Container for the product detail page */
 .product-detail-container {
-    display: flex;
-    flex-direction: column; /* Vertical alignment */
-    padding: 40px;
-    gap: 30px;
-    animation: slideInFromLeft 0.7s ease; /* Animation for sliding in */
-    position: relative; /* Make container relative for go-back positioning */
-    align-items: center; /* Center-align all items horizontally */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Go Back button styling */
 .go-back-btn {
-    position: absolute; /* Keep button at the top left */
-    top: 20px;
-    left: 20px;
-    padding: 10px 15px;
     background-color: #007bff;
     color: white;
     border: none;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
     display: flex;
     align-items: center;
-    gap: 8px; /* Spacing between icon and text */
-    animation: bounceIn 1s ease; /* Animation for the Go Back button */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background color and scale */
+    font-size: 16px;
+    margin-bottom: 20px;
+    z-index: 10; /* Ensure it appears above other content */
 }
 
 .go-back-btn i {
-    font-size: 20px;
+    margin-right: 10px; /* Space between icon and text */
 }
 
-.go-back-btn:hover {
-    background-color: #0056b3;
-    transform: scale(1.05); /* Slightly increase size on hover */
-}
-
+/* Layout of the product content */
 .product-detail-content {
-    display: flex; /* Use flexbox to arrange image and info side by side */
-    align-items: flex-start; /* Align items to the top */
-    gap: 30px; /* Space between image and info */
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Product image section */
+.product-image-container {
+    flex: 1;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .product-detail-image {
-    width: 250px; /* Adjust the image size */
-    height: auto;
+    margin-top : -200px;
+    width: 350px; /* Set width to fill the container */
+    height: 350px; /* Maintain aspect ratio */
     border-radius: 10px;
-    animation: fadeIn 0.5s ease; /* Image fade-in effect */
-    transition: transform 0.3s ease;
+    cursor:pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover effects */
+    object-fit: contain; /* Ensure image fits within the container without cropping */
 }
 
-.product-detail-image:hover {
-    transform: scale(1.05); /* Scale effect on hover */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
-}
-
+/* Product information section */
 .product-info {
-    display: flex;
-    flex-direction: column; /* Ensure vertical stacking of product info */
-    align-items: center; /* Center-align text and buttons */
-    text-align: center; /* Center-align text */
-    animation: slideInFromRight 0.7s ease; /* Product info sliding animation */
+    flex: 1.5;
+    position: relative; /* Allow positioning of title */
 }
 
+/* Product title styling */
 .product-detail-name {
-    font-size: 28px;
-    margin-bottom: 10px;
+    margin-bottom: 20px; /* Space below the title */
+    font-size: 40px;
+    font-weight: bold;
+    text-align: left; /* Align title to the left */
 }
 
-.product-detail-price {
-    font-size: 22px;
-    color: #007bff;
-    margin-bottom: 10px;
-}
-
-.product-detail-description {
+/* Product price and company name layout */
+.product-detail-label {
     font-size: 18px;
-    margin-bottom: 20px;
+    font-weight: bold;
 }
 
+/* Specifications table styling */
+.specifications-table {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.specifications-table td {
+    vertical-align: top;
+    padding: 8px;
+}
+
+.spec-description {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: left;
+    white-space: nowrap; /* Prevent wrapping of text */
+    margin-bottom: 8px;
+    background-color: #fff;
+}
+
+/* Color options section */
 .color-options {
-    display: flex; /* Arrange color options in a row */
-    gap: 10px; /* Space between color options */
-    margin-bottom: 20px; /* Space below color options */
+    margin: 20px 0;
 }
 
 .color-option {
-    width: 30px; /* Width of color options */
-    height: 30px; /* Height of color options */
-    border-radius: 50%; /* Make them circular */
-    border: 2px solid transparent; /* Border to indicate selection */
-    cursor: pointer; /* Change cursor on hover */
-    transition: border-color 0.3s ease; /* Smooth transition for border color */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
 }
 
 .color-option.selected {
-    border-color: #000; /* Change border color when selected */
+    border-color: #000;
 }
 
-/* Button Container for Buy Now and Cancel Order */
+/* Buttons styling */
 .button-container {
-    display: flex; /* Use flexbox to arrange buttons in a row */
-    justify-content: center; /* Center-align buttons */
-    gap: 20px; /* Space between buttons */
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    margin-top: 20px; /* Reduced margin above buttons */
 }
 
-.buy-now-btn, .cancel-order-btn {
-    width: 150px; /* Increase button width */
-    padding: 12px 0; /* Adjust padding for consistency */
-}
-
-/* Buy Now Button */
 .buy-now-btn {
-    padding: 12px 24px;
-    background-color: #28a745; /* Bootstrap success color */
-    color: white;
-    border: none;
+    padding: 12px 30px; /* Increased padding for height */
+    font-size: 18px; /* Increased font size */
     border-radius: 5px;
+    border: none;
     cursor: pointer;
-    display: inline-block;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    width: 300px; /* Set button to full width */
+    max-width: 500px; /* Maximum width for larger screens */
+    text-align: center; /* Center text within button */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition for hover effects */
+    background-color: #28a745; /* Green color */
+    color: white;
+    z-index: 10; /* Ensure it's on top of other elements */
 }
 
 .buy-now-btn:hover {
     background-color: #218838; /* Darker green on hover */
-    transform: scale(1.05); /* Scale effect on hover */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
 }
 
-/* Cancel Order Button */
-.cancel-order-btn {
-    padding: 12px 24px;
-    background-color: #dc3545; /* Bootstrap danger color */
-    color: white;
-    border: none;
-    border-radius: 5px;
+/* Modal styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure modal is on top */
+}
+
+.modal-content {
+    position: relative;
+    width: 85vw; /* Responsive width */
+    height: 85vh; /* Responsive height */
+    max-width: 950px; /* Limit maximum width */
+    max-height: 750px; /* Limit maximum height */
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001; /* Modal content on top of overlay */
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    color: rgb(0, 0, 0);
     cursor: pointer;
-    display: inline-block;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    z-index: 1002; /* Close button on top of everything */
 }
 
-.cancel-order-btn:hover {
-    background-color: #c82333; /* Darker red on hover */
-    transform: scale(1.05); /* Scale effect on hover */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+.modal-image {
+    max-width: 100%; /* Ensure image is responsive */
+    max-height: 100%; /* Ensure image maintains aspect ratio */
 }
-
-/* Keyframes for animations */
-@keyframes slideInFromLeft {
-    from {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideInFromRight {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes bounceIn {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-30px);
-    }
-    60% {
-        transform: translateY(-15px);
-    }
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff; /* Bootstrap primary color */
 }

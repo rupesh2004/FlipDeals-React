@@ -1,0 +1,42 @@
+/* Modal styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure modal is on top */
+}
+
+.modal-content {
+    position: relative;
+    width: 85vw; /* Responsive width */
+    height: 85vh; /* Responsive height */
+    max-width: 950px; /* Limit maximum width */
+    max-height: 750px; /* Limit maximum height */
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001; /* Modal content on top of overlay */
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    z-index: 1002; /* Close button on top of everything */
+}
+
+.modal-image {
+    max-width: 100%; /* Ensure image is responsive */
+    max-height: 100%; /* Ensure image maintains aspect ratio */
+}

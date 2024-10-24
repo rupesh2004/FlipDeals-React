@@ -1,67 +1,134 @@
-// src/components/ProductDetail.js
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import { useParams, useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
-import './ProductDetail.css'; // Optional CSS for product details styling
+import './ProductDetail.css'; 
+import './Modal.css'; 
 
 const ProductDetail = () => {
-  const { id } = useParams(); // Get the product ID from the URL
+  const { id } = useParams(); 
   const [product, setProduct] = useState(null);
   const [error, setError] = useState('');
-  const [selectedColor, setSelectedColor] = useState(''); // State for selected color
-  const navigate = useNavigate(); // Use navigate for going back
+  const [selectedColor, setSelectedColor] = useState(''); 
+  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [modalImage, setModalImage] = useState(''); 
+  const [loading, setLoading] = useState(true); // Added loading state
+  const navigate = useNavigate(); 
 
   useEffect(() => {
-    // Fetch product details from the backend using the product ID
     const fetchProductDetails = async () => {
       try {
+        setLoading(true); // Start loading
         const response = await axios.get(`http://localhost:5000/api/products/${id}`);
-        setProduct(response.data); // Set the fetched product data
+        setProduct(response.data);
       } catch (err) {
         setError('Error fetching product details');
         console.error('Error fetching product details:', err);
+      } finally {
+        setLoading(false); // Stop loading
       }
     };
-
     fetchProductDetails();
   }, [id]);
 
   const handleGoBack = () => {
-    navigate('/'); // Navigate back to the main page
+    navigate('/'); 
   };
 
   const handleColorSelect = (color) => {
-    setSelectedColor(color); // Update the selected color state
+    setSelectedColor(color); 
   };
+
+  const openModal = (imageSrc) => {
+    setModalImage(imageSrc); 
+    setIsModalOpen(true); 
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); 
+  };
+
+  // Display loader while loading
+  if (loading) {
+    return <div className="loader">Loading...</div>; // Your loading message or spinner
+  }
 
   if (error) {
     return <div>{error}</div>;
   }
 
   if (!product) {
-    return <div>Loading...</div>; // Display a loading message while fetching
+    return <div>No product found.</div>; 
   }
+
+  const specifications = product.productSpecification
+    ? product.productSpecification.split(',')
+    : [];
+
+  const firstColumnSpecs = specifications.slice(0, Math.floor(specifications.length / 2)); 
+  const secondColumnSpecs = specifications.slice(Math.floor(specifications.length / 2)); 
 
   return (
     <div className="product-detail-container">
       <button className="go-back-btn" onClick={handleGoBack}>
-        <i className="fas fa-arrow-left"></i> {/* Font Awesome icon */}
+        <i className="fas fa-arrow-left"></i> 
         Go Back
       </button>
+      
       <div className="product-detail-content">
-        <img src={product.productImage} alt={product.productName} className="product-detail-image" />
+        <div className="product-image-container">
+          <img
+            src={product.productImage}
+            alt={product.productName}
+            className="product-detail-image"
+            onClick={() => openModal(product.productImage)} 
+          />
+          <div className="button-container">
+            <button className="buy-now-btn">
+              <i className="fas fa-shopping-cart"></i> 
+              Buy Now
+            </button>
+          </div>
+        </div>
         <div className="product-info">
           <h2 className="product-detail-name">{product.productName}</h2>
-          
-          {/* Added Labels for Product Information */}
-          <p className="product-detail-label"><strong>Price:</strong> ${product.productPrice}</p>
-          
-          {/* Conditional Rendering for Specifications */}
-          <p className="product-detail-label">
-            <strong>Specifications:</strong> {product.productSpecification || 'No specifications available.'}
-          </p>
-          
-          {/* Color Options */}
+          <p className="product-detail-label"><strong>Price:</strong> ₹{product.productPrice} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Company:</strong> {product.companyName}</p>
+      
+
+          <p className="product-detail-label"><strong>Spcifications:</strong></p>
+          <div className="specifications-table">
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <table>
+                      <tbody>
+                        {firstColumnSpecs.map((spec, index) => (
+                          <tr key={index}>
+                            <td className="spec-description">{spec.trim()}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </td>
+                  <td>
+                    <table>
+                      <tbody>
+                        {secondColumnSpecs.map((spec, index) => (
+                          <tr key={index}>
+                            <td className="spec-description">{spec.trim()}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p className="product-detail-label"><strong>Description:</strong></p>
+          <p className="product-description">{product.productDescription || 'No description available.'}</p>
+
           <div className="color-options">
             <p className="product-detail-label"><strong>Choose Color:</strong></p>
             {['red', 'blue', 'green', 'yellow'].map((color) => (
@@ -73,14 +140,17 @@ const ProductDetail = () => {
               ></div>
             ))}
           </div>
-
-          {/* Button Container for Buy Now and Cancel Order */}
-          <div className="button-container">
-            <button className="buy-now-btn">Buy Now</button>
-            <button className="cancel-order-btn">Cancel Order</button>
-          </div>
         </div>
       </div>
+
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content">
+            <span className="close-button" onClick={closeModal}>&times;</span>
+            <img src={modalImage} alt="Modal" className="modal-image" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
