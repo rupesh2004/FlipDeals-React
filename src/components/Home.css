@@ -1,0 +1,135 @@
+/* src/components/Home.css */
+
+.homepage-header {
+  background-color: #fffacd; /* Light yellow background */
+  color: #5a4b2a;    /* Darker brownish-yellow text for contrast */
+  padding: 30px;
+  margin: 20px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 100%; /* Full width for the header */
+  text-align: center;
+}
+
+/* Header title styling */
+.header-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #ff8c00; /* Darker blue for emphasis */
+  margin-bottom: 10px;
+  animation: fadeIn 1.2s ease-out;
+}
+
+/* Subtitle and slogan styling */
+.header-subtitle, .slogan {
+  font-size: 1.5rem;
+  color: #b8860b;
+}
+
+/* Slogan-specific styling */
+.slogan {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #ff4500;
+  margin-bottom: 20px;
+  text-decoration: underline;
+}
+
+/* Carousel image styling */
+.carousel-img {
+  margin-top: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Header for the category section */
+.categories-header {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #5a4b2a;
+  margin: 20px 0 30px;
+  animation: fadeIn 1.2s ease-out;
+}
+
+/* Styling for the category card */
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid #f1f1f1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  margin: 10px;
+  cursor:pointer;
+}
+
+.category-card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Styling for the category image */
+.category-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  padding: 5px;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+.category-card:hover .category-img {
+  border-color: #28a745;
+}
+
+/* Styling for the category description */
+.category-description {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-top: 5px;
+  text-align: center;
+}
+
+/* Enhanced button styling with Font Awesome icon */
+.button {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0066cc, #3399ff); /* New blue gradient */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Icon styling for Font Awesome icon in button */
+.button i {
+  margin-right: 8px;
+  font-size: 1.2rem;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -31,7 +31,7 @@ const ProductDetail = () => {
   }, [id]);
 
   const handleGoBack = () => {
-    navigate('/'); 
+    navigate('/allProducts'); 
   };
 
   const handleColorSelect = (color) => {

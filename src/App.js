@@ -7,16 +7,16 @@ import SignUpForm from './components/signupForm';
 import LoginForm from './components/loginForm';
 import ForgotPasswordForm from './components/forgotPassword';
 import ProductDetail from './components/productDetails'; // Import the ProductDetail component
-
+import ImageCarousel from './components/Home.js';
 function App() {
-  const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <Router>
       <div>
-        <Navbar setSearchTerm={setSearchTerm} /> {/* Pass setSearchTerm to Navbar */}
+        <Navbar/> 
         <Routes>
-          <Route path='/' element={<Products searchTerm={searchTerm} />} /> {/* Home page route */}
+          <Route path='/' element={<ImageCarousel/>} /> {/* Home page route */}
+          <Route path = '/allProducts' element={<Products/>}/>
           <Route path='/signin' element={<LoginForm />} /> {/* Login page */}
           <Route path='/signup' element={<SignUpForm />} /> {/* Signup page */}
           <Route path='/forgotPassword' element={<ForgotPasswordForm />} /> {/* Forgot password page */}

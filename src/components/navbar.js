@@ -32,13 +32,12 @@ const Navbar = ({ setSearchTerm }) => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/uploadProducts">
-                        <i className="fa fa-items"></i> Products 
+                    <Link to="/allProducts">
+                        <i className="fa fa-box"></i> Products {/* Updated icon */}
                     </Link>
                 </li>
-                
                 <li className="dropdown">
-                    <a href="#categories">
+                    <a href="#categories" className="dropdown-toggle">
                         <i className="fa fa-th-list"></i> Categories
                     </a>
                     <ul className="dropdown-menu">
