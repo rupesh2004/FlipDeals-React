@@ -30,6 +30,10 @@ const ProductDetail = () => {
     fetchProductDetails();
   }, [id]);
 
+  const handleBuyNow = ()=>{
+    navigate('/orderNow',{state:{product}});
+  }
+
   const handleGoBack = () => {
     navigate('/allProducts'); 
   };
@@ -71,7 +75,7 @@ const ProductDetail = () => {
     <div className="product-detail-container">
       <button className="go-back-btn" onClick={handleGoBack}>
         <i className="fas fa-arrow-left"></i> 
-        Go Back
+        
       </button>
       
       <div className="product-detail-content">
@@ -83,7 +87,7 @@ const ProductDetail = () => {
             onClick={() => openModal(product.productImage)} 
           />
           <div className="button-container">
-            <button className="buy-now-btn">
+            <button className="buy-now-btn" onClick={handleBuyNow}  >
               <i className="fas fa-shopping-cart"></i> 
               Buy Now
             </button>

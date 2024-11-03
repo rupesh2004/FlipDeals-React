@@ -5,6 +5,7 @@ const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser');
 const { User } = require('./schemas'); // Ensure the User schema is defined
+const Razorpay = require('razorpay');
 
 const app = express();
 
@@ -14,6 +15,31 @@ app.use(cors()); // Enable CORS
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, '/uploads'))); // Serve static files from the uploads folder
+
+
+const razorpay = new Razorpay({
+  key_id: 'YOUR_RAZORPAY_KEY', // Replace with your Razorpay key id
+  key_secret: 'YOUR_RAZORPAY_SECRET' // Replace with your Razorpay key secret
+});
+
+
+
+app.post('/api/createOrder', async (req, res) => {
+  const { amount, currency } = req.body;
+  const options = {
+      amount, // amount in paise
+      currency,
+      receipt: `receipt_order_${Date.now()}`,
+  };
+
+  try {
+      const order = await razorpay.orders.create(options);
+      res.json(order);
+  } catch (error) {
+      res.status(500).send(error);
+  }
+});
+
 
 // MongoDB Connection
 mongoose.connect('mongodb://localhost:27017/e-commerce', {
@@ -40,6 +66,17 @@ const productSchema = new mongoose.Schema({
 
 // Create Product Model
 const Product = mongoose.model('Product', productSchema);
+
+const orderSchema = new mongoose.Schema({
+  productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+  customerName: { type: String, required: true },
+  customerEmail: { type: String, required: true },
+  contactNumber: { type: String, required: true },
+  address: { type: String, required: true },
+  quantity: { type: Number, required: true,},
+}, { timestamps: true });
+
+const Order = mongoose.model('Order', orderSchema);
 
 // Configure Multer for file uploads
 const storage = multer.diskStorage({
@@ -203,6 +240,55 @@ app.post('/reset-password', async (req, res) => {
     res.status(200).json({ message: 'Password successfully updated' });
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+});
+
+
+app.post('/api/orders', async (req, res) => {
+  const { productId, customerName, customerEmail, contactNumber, address, quantity } = req.body;
+
+  try {
+    // Check if the user has already ordered the same product
+    const existingOrder = await Order.findOne({
+      productId,
+      customerEmail,
+    });
+
+    if (existingOrder) {
+      return res.status(400).json({ error: 'You have already ordered this product.' });
+    }
+
+    // If no existing order, proceed to create a new order
+    const newOrder = new Order({
+      productId,
+      customerName,
+      customerEmail,
+      contactNumber,
+      address,
+      quantity
+    });
+
+    await newOrder.save();
+    return res.status(201).json({ message: 'Order placed successfully!', order: newOrder });
+  } catch (error) {
+    console.error('Error placing order:', error);
+    return res.status(500).json({ error: 'Failed to place order' });
+  }
+});
+
+app.post('/api/checkUser', async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ userEmail: email });
+    if (user) {
+      return res.status(200).json({ exists: true });
+    }
+    return res.status(404).json({ exists: false });
+  } catch (error) {
+
+    console.error('Error checking user:', error);
+    return res.status(500).json({ error: 'Failed to check user' });
   }
 });
 

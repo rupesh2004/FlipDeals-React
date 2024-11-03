@@ -10,7 +10,9 @@ const Navbar = ({ setSearchTerm }) => {
         <nav className="navbar">
             <div className="logo-container">
                 <img src={logo} alt="FlipDeals Logo" className="logo" />
-                <h1 className="company-name">FlipDeals</h1>
+                <Link to="/">
+                    <h1 className="company-name">FlipDeals</h1>
+                </Link>
             </div>
             <div className="search-container">
                 <form onSubmit={(e) => e.preventDefault()}>

@@ -1,0 +1,197 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif; /* Add a default font for the application */
+}
+
+/* Order Now Container */
+.order-now-container {
+    max-width: 900px; /* Adjusted width for better layout */
+    margin: 70px auto 50px; /* Center horizontally, increased top margin for spacing */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    animation: fadeIn 0.5s ease-in;
+    display: flex;
+    flex-direction: column; /* Stack product summary and form vertically */
+    gap: 20px; /* Space between elements */
+}
+
+/* Animation for container fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Product Summary Styling */
+.product-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.product-summary img {
+    max-width: 100%;
+    width: 200px; /* Fixed width for consistency */
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.product-summary h3,
+.product-summary p {
+    margin: 5px 0;
+    color: #333; /* Default text color */
+}
+
+/* Form Styling */
+.order-now-container form {
+    flex: 1; /* Allow form to grow */
+}
+
+/* Input Styles */
+.order-now-container form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.order-now-container form input[type="text"],
+.order-now-container form input[type="email"],
+.order-now-container form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+/* Input Hover and Focus Effects */
+.order-now-container form input:hover,
+.order-now-container form textarea:hover,
+.order-now-container form input:focus,
+.order-now-container form textarea:focus {
+    border-color: #007bff;
+}
+
+/* Submit Button Styles */
+.order-now-container form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745; /* Green color */
+    color: #fff;
+    font-size: 1em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.order-now-container form button[type="submit"]:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Quantity Counter Styles */
+.quantity-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.quantity-container label {
+    font-weight: bold;
+    color: #333;
+}
+
+.quantity-container button {
+    padding: 5px 10px;
+    font-size: 1.2em;
+    background-color: #007bff; /* Blue color */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.quantity-container button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.quantity-container button:active {
+    transform: scale(0.95); /* Slightly shrink when clicked */
+}
+
+.quantity-container input {
+    width: 40px;
+    text-align: center;
+    font-size: 1.1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Button States */
+button:disabled {
+    background-color: #ccc; /* Grey color for disabled state */
+    cursor: not-allowed; /* Change cursor to indicate non-clickable */
+}
+
+/* Place Order Button Styles */
+.place-order-button {
+    width: 100%; /* Full width for better UX */
+    padding: 12px; /* Adequate padding for touch targets */
+    background-color: #28a745; /* Green color for the button */
+    color: #fff; /* White text for contrast */
+    font-size: 1.2em; /* Larger font size for visibility */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor for better UX */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    margin-top: 20px; /* Add top margin */
+}
+
+.place-order-button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.place-order-button:active {
+    transform: scale(0.95); /* Slightly shrink when clicked */
+}
+
+/* Go Back Button Styles */
+.go-back-button {
+    position: absolute; /* Ensure the button can overlap other content */
+    top: 100px; /* Position from the top */
+    left: 70px; /* Position from the left */
+    background-color: #007bff; /* Button background color */
+    border: none; /* No border */
+    color: white; /* Text color */
+    cursor: pointer; /* Pointer cursor for better UX */
+    font-size: 1em; /* Font size */
+    display: flex;
+    padding: 10px 20px; /* Padding for button */
+    border-radius: 20%; /* Rounded corners */
+    align-items: center; /* Center alignment */
+    z-index: 1000; /* High z-index to ensure it appears above other elements */
+}
+
+.go-back-button i {
+    margin-right: 5px; /* Space between icon and text */
+}
+
+/* GPay Button Container */
+.gpay-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem; /* Space above GPay buttons */
+}
