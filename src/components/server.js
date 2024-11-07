@@ -361,45 +361,84 @@ app.post('/api/checkUser', async (req, res) => {
   }
 });
 
+function generateOTP() {
+  return Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
+}
 
+const otpStore = {};
 
+app.post('/api/checkEmailAndFetchOrders', async (req, res) => {
+  const { email } = req.body;
 
-// Orders fetching route
-app.get('/api/orders/:email', async (req, res) => {
-  const { email } = req.params;
-
-  try {
-      // Find orders placed by the user
-      const orders = await Order.find({ userEmail: email }).populate('productId');
-
-      if (!orders.length) {
-          return res.status(404).json({ message: 'No orders found' });
-      }
-
-      // Return orders with populated product details
-      res.json(orders);
-  } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Server error' });
+  if (!email) {
+      return res.status(400).json({ message: 'Email is required' });
   }
-});
-
-// Example backend endpoint to get orders by email
-app.get('/api/orders/:email', async (req, res) => {
-  const { email } = req.params;
 
   try {
-      const orders = await Order.find({ email }); // Assuming 'Order' is the model for orders
+      const orders = await Order.find({ customerEmail: email }).populate('productId');
+
       if (orders.length > 0) {
-          res.status(200).json(orders);
+          const otp = generateOTP();
+          otpStore[email] = otp;
+          console.log(`Generated OTP: ${otp} for email: ${email}`); // Debugging line
+
+          await transporter.sendMail({
+              from: 'your-email@gmail.com',
+              to: email,
+              subject: 'Your OTP for Order Verification',
+              text: `Your OTP is: ${otp}`,
+          });
+
+          console.log(`OTP sent to ${email}`); // Debugging line
+
+          return res.status(200).json({ emailFound: true, orders });
       } else {
-          res.status(404).json({ message: 'No orders found for this email address.' });
+          return res.status(404).json({ emailFound: false, message: 'No orders found for this email.' });
       }
   } catch (error) {
-      res.status(500).json({ message: 'Server error' });
+      console.error('Error sending OTP:', error);
+      res.status(500).json({ message: 'Server error. Please try again later.' });
   }
 });
 
+app.post('/api/verifyOtp', (req, res) => {
+  const { email, otp } = req.body;
+
+  if (otpStore[email] && otpStore[email] === otp) {
+      // OTP is correct, delete it from store and respond with success
+      delete otpStore[email];
+      return res.status(200).json({ valid: true });
+  } else {
+      // OTP is incorrect
+      return res.status(400).json({ valid: false, message: 'Incorrect OTP. Please try again.' });
+  }
+});
+
+
+// Assuming you're using Express and Mongoose
+
+app.post('/api/orders/cancel', async (req, res) => {
+  const { orderId, reason } = req.body;
+
+  try {
+      // Find and delete the order with the given ID
+      const order = await Order.findById(orderId);
+
+      if (!order) {
+          return res.status(404).json({ success: false, message: 'Order not found' });
+      }
+
+      // Optionally, log the cancellation reason or store it in another collection for tracking
+
+      // Delete the order from the database
+      await Order.findByIdAndDelete(orderId);
+
+      res.json({ success: true, message: 'Order cancelled successfully' });
+  } catch (error) {
+      console.error('Error cancelling order:', error);
+      res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
 
 // Start the Server
 const PORT = 5000;
