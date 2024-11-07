@@ -38,16 +38,10 @@ const Navbar = ({ setSearchTerm }) => {
                         <i className="fa fa-box"></i> Products {/* Updated icon */}
                     </Link>
                 </li>
-                <li className="dropdown">
-                    <a href="#categories" className="dropdown-toggle">
-                        <i className="fa fa-th-list"></i> Categories
-                    </a>
-                    <ul className="dropdown-menu">
-                        <li><a href="#mobiles"><i className="fa fa-mobile"></i> Mobiles</a></li>
-                        <li><a href="#headphones"><i className="fa fa-headphones"></i> Headphones</a></li>
-                        <li><a href="#laptops"><i className="fa fa-laptop"></i> Laptops</a></li>
-                        <li><a href="#smartwatches"><i className="fa fa-watch"></i> Smart Watches</a></li> {/* Updated with smartwatch icon */}
-                    </ul>
+                <li>
+                    <Link to="/myOrders">
+                        <i className="fa fa-list-alt"></i> My Orders {/* Updated tab */}
+                    </Link>
                 </li>
                 <li>
                     <Link to="/signin">

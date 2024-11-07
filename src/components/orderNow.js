@@ -1,6 +1,7 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import './OrderNow.css';
 
 const OrderNow = () => {
@@ -25,6 +26,18 @@ const OrderNow = () => {
   const [paymentMethod, setPaymentMethod] = useState('cash');
   const totalAmount = quantity * (product ? product.productPrice : 0);
 
+  // Define orderData outside of handleSubmit
+  const orderData = {
+    productId: product?._id,
+    customerName: formData.name,
+    customerEmail: formData.email,
+    contactNumber: formData.contact,
+    address: `${formData.homeNo}, ${formData.streetName}, ${formData.village}, ${formData.taluka}, ${formData.district}, ${formData.state} - ${formData.pinCode}`,
+    quantity: quantity,
+    paymentMethod: paymentMethod,
+    totalAmount: totalAmount,
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -43,125 +56,27 @@ const OrderNow = () => {
     }
   };
 
-  const loadGooglePay = useCallback(() => {
-    if (window.google) {
-      const paymentsClient = new window.google.payments.api.PaymentsClient({ environment: 'TEST' });
-      const button = paymentsClient.createButton({
-        onClick: onGooglePayButtonClicked,
-      });
-      const gpayContainer = document.getElementById('gpay-button-container');
-      gpayContainer.innerHTML = '';
-      gpayContainer.appendChild(button);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (paymentMethod === 'online') {
-      loadGooglePay();
-    }
-  }, [paymentMethod, loadGooglePay]);
-
-  const onGooglePayButtonClicked = async () => {
-    const paymentDataRequest = {
-      apiVersion: 2,
-      apiVersionMinor: 0,
-      allowedPaymentMethods: [
-        {
-          type: 'CARD',
-          parameters: {
-            allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-            allowedCardNetworks: ['MASTERCARD', 'VISA'],
-          },
-          tokenizationSpecification: {
-            type: 'PAYMENT_GATEWAY',
-            parameters: {
-              gateway: 'example',
-              gatewayMerchantId: 'exampleMerchantId',
-            },
-          },
-        },
-      ],
-      merchantInfo: {
-        merchantId: 'BCR2DN4TXXYQWBHG',
-        merchantName: 'Your Company Name',
-      },
-      transactionInfo: {
-        totalPriceStatus: 'FINAL',
-        totalPriceLabel: 'Total',
-        totalPrice: totalAmount.toString(),
-        currencyCode: 'INR',
-        countryCode: 'IN',
-      },
-    };
-
-    const paymentsClient = new window.google.payments.api.PaymentsClient({ environment: 'TEST' });
-    try {
-      const paymentData = await paymentsClient.loadPaymentData(paymentDataRequest);
-      handlePaymentSuccess(paymentData);
-    } catch (error) {
-      console.error('Google Pay Error:', error);
-      alert('Payment failed. Please try again.');
-    }
-  };
-
-  const handlePaymentSuccess = async (paymentData) => {
-    try {
-      const orderData = {
-        productId: product._id,
-        customerName: formData.name,
-        customerEmail: formData.email,
-        contactNumber: formData.contact,
-        address: `${formData.homeNo}, ${formData.streetName}, ${formData.village}, ${formData.taluka}, ${formData.district}, ${formData.state} - ${formData.pinCode}`,
-        quantity: quantity,
-        paymentMethod: 'online',
-        totalAmount: totalAmount,
-        paymentData: paymentData, // Include payment data for processing
-      };
-
-      const response = await axios.post('http://localhost:5000/api/orders', orderData);
-      if (response.status === 201) {
-        alert('Order placed successfully!');
-        navigate('/orderConfirmation');
-      }
-    } catch (error) {
-      console.error('Order error:', error);
-      alert('Failed to place order. Please try again.');
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const orderData = {
-      productId: product._id,
-      customerName: formData.name,
-      customerEmail: formData.email,
-      contactNumber: formData.contact,
-      address: `${formData.homeNo}, ${formData.streetName}, ${formData.village}, ${formData.taluka}, ${formData.district}, ${formData.state} - ${formData.pinCode}`,
-      quantity: quantity,
-      paymentMethod: paymentMethod,
-      totalAmount: totalAmount,
-    };
-
-    if (paymentMethod === 'online') {
-      onGooglePayButtonClicked();
-    } else {
-      try {
-        const userCheckResponse = await axios.post('http://localhost:5000/api/checkUser', { email: formData.email });
-        if (userCheckResponse.data.exists) {
+    try {
+      const userCheckResponse = await axios.post('http://localhost:5000/api/checkUser', { email: formData.email });
+      if (userCheckResponse.data.exists) {
+        if (paymentMethod === 'cash') {
+          // Save the order immediately if Cash on Delivery is selected
           const response = await axios.post('http://localhost:5000/api/orders', orderData);
           if (response.status === 201) {
             alert('Order placed successfully!');
             navigate('/orderConfirmation');
           }
-        } else {
-          alert('User not found. Please register first.');
-          navigate('/signup');
         }
-      } catch (error) {
-        console.error('Error placing order:', error);
-        alert('Failed to place order. Please try again.');
+      } else {
+        alert('User not found. Please register first.');
+        navigate('/signup');
       }
+    } catch (error) {
+      console.error('Error placing order:', error);
+      alert('Failed to place order. Please try again.');
     }
   };
 
@@ -256,7 +171,7 @@ const OrderNow = () => {
                 checked={paymentMethod === 'online'}
                 onChange={() => setPaymentMethod('online')}
               />
-              <label htmlFor="online">Google Pay</label>
+              <label htmlFor="online">Online Payment</label>
             </div>
 
             <div className="total-amount">
@@ -264,17 +179,122 @@ const OrderNow = () => {
             </div>
           </div>
 
+          {/* Hide Place Order button when online payment is selected */}
           {paymentMethod === 'cash' && (
             <button type="submit" className="place-order-button">Place Order</button>
           )}
         </form>
-
-        {paymentMethod === 'online' && (
-          <div id="gpay-button-container" className="gpay-button-container"></div>
-        )}
       </div>
+
+      {paymentMethod === 'online' && <CheckoutForm amount={totalAmount} orderData={orderData} navigate={navigate} />}
     </div>
   );
 };
+
+// CheckoutForm Component
+function CheckoutForm({ amount, orderData, navigate }) {
+  const stripe = useStripe();
+  const elements = useElements();
+  const [paymentStatus, setPaymentStatus] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false); // New state for handling processing status
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!stripe || !elements) {
+      return; // Ensure Stripe and Elements are ready
+    }
+
+    const cardElement = elements.getElement(CardElement); // Get the CardElement
+
+    if (!cardElement) {
+      setPaymentStatus('Error: CardElement is not available.');
+      return; // Check if CardElement is available
+    }
+
+    if (isProcessing) {
+      return; // Prevent form submission if payment is already being processed
+    }
+
+    setIsProcessing(true); // Set processing state to true
+
+    // Get the billing information from the orderData
+    const billingDetails = {
+      name: orderData.customerName,
+      email: orderData.customerEmail,
+      phone: orderData.contactNumber, // Mobile number
+      address: {
+        line1: orderData.homeNo,
+        line2: orderData.streetName,
+        city: orderData.village,
+        state: orderData.state,
+        postal_code: orderData.pinCode,
+        country: 'IN' // Set the country code, assuming India (IN) here. Adjust if necessary.
+      },
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/create-payment-intent', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ amount }), // Pass the dynamic amount
+      });
+
+      const data = await response.json();
+
+      if (!data.clientSecret) {
+        throw new Error("Failed to retrieve client secret from server.");
+      }
+
+      const result = await stripe.confirmCardPayment(data.clientSecret, {
+        payment_method: {
+          card: cardElement, // Pass the CardElement directly here
+          billing_details: billingDetails, // Send the billing details to Stripe
+        },
+      });
+
+      if (result.error) {
+        console.error("Payment failed:", result.error.message);
+        setPaymentStatus('Payment failed: ' + result.error.message);
+      } else {
+        if (result.paymentIntent.status === 'succeeded') {
+          console.log('Payment successful:', result.paymentIntent);
+          setPaymentStatus('Payment successful!');
+
+          // Save the order after payment is successful
+          try {
+            const response = await axios.post('http://localhost:5000/api/orders', orderData);
+            if (response.status === 201) {
+              alert('Payment Successful and Order placed successfully!');
+              navigate('/orderConfirmation');
+            }
+          } catch (error) {
+            console.error('Error saving order after payment:', error);
+            alert('Error placing order. Please try again.');
+          }
+        }
+      }
+    } catch (error) {
+      console.error("Error in handleSubmit:", error.message);
+      setPaymentStatus('Error: ' + error.message);
+    } finally {
+      setIsProcessing(false); // Reset processing state after payment attempt
+    }
+  };
+
+  return (
+    <div>
+      <h3>Proceed to Payment</h3>
+      <form onSubmit={handleSubmit}>
+        <CardElement />
+        {/* Disable the button when payment is processing */}
+        <br/>
+        <button type="submit" disabled={isProcessing || !stripe}>Place Order</button>
+      </form>
+    </div>
+  );
+}
 
 export default OrderNow;

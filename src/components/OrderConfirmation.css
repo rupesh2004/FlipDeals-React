@@ -1,0 +1,114 @@
+/* OrderConfirmation.css */
+
+.order-confirmation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    text-align: center;
+    padding: 20px;
+    opacity: 0;
+    margin-top: -50px;
+    animation: fadeIn 1s forwards ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.order-confirmation h1 {
+    font-size: 2.5rem;
+    color: #28a745;
+    margin-bottom: 20px;
+    animation: colorCycle 4s infinite, slideDown 1s ease-out;
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes colorCycle {
+    0%, 100% {
+        color: #28a745;
+    }
+}
+
+.order-confirmation img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 3 );
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.order-confirmation p {
+    font-size: 1.2rem;
+    color: #333;
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    animation: fadeInText 1.5s ease;
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.view-more-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: float 3s ease-in-out ;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.view-more-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
