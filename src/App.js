@@ -15,6 +15,7 @@ import OrderConfirmation from './components/OrderConfirmation.js'
 import MyOrders from './components/MyOrders';
 import AboutUs from './components/aboutUs.js';
 import ContacUs from './components/contactUs.js';
+import Services from './components/Services.js'
 // Load your Stripe public key
 const stripePromise = loadStripe('pk_test_51QHJ9gJ3vYbqgfoF5VLtgqIbh8HGfVHAswEDfBrPwLufDX2xQjRXgvSLHk1MaJZxcUjgOhep9O7e5y2tuAcWpbeb00tAyn8MCX');
 
@@ -37,6 +38,7 @@ function App() {
             <Route path="/myOrders" element={<MyOrders />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/contact" element={<ContacUs />} />
+            <Route path="/services" element={<Services />} />
 
             
           </Routes>
