@@ -149,28 +149,32 @@ const MyOrders = () => {
             {error && <p className="error-message">{error}</p>}
 
             {otpVerified && (
-                
                 <div className="orders-list">
                     <h2>Your Orders</h2>
                     <div className="orders-container">
-                        {orders.map((order) => (
-                            <div key={order._id} className="order-card">
-                    <br/><br/>
-                                
-                                <p><strong>Product:</strong> {order.productId.productName}</p>
-                                <p><strong>Quantity:</strong> {order.quantity}</p>
-                                <p><strong>Total Amount:</strong> ₹{order.totalAmount}</p>
-                                <p><strong>Payment Method:</strong> {order.paymentMethod}</p>
-                                <p><strong>Delivery Date:</strong> {order.deliveryDate}</p>
-                                <p><strong>Status:</strong> {calculateOrderStatus(order.deliveryDate)}</p>
-                                <button 
-                                    onClick={() => requestCancelOrder(order._id)} 
-                                    className="cancel-button"
-                                >
-                                    Cancel Order
-                                </button>
-                            </div>
-                        ))}
+                        {orders.map((order) => {
+                            const status = calculateOrderStatus(order.deliveryDate);
+                            return (
+                                <div key={order._id} className="order-card">
+                                    <br/><br/>
+                                    <p><strong>Product:</strong> {order.productId.productName}</p>
+                                    <p><strong>Quantity:</strong> {order.quantity}</p>
+                                    <p><strong>Total Amount:</strong> ₹{order.totalAmount}</p>
+                                    <p><strong>Payment Method:</strong> {order.paymentMethod}</p>
+                                    <p><strong>Delivery Date:</strong> {order.deliveryDate}</p>
+                                    <p><strong>Status:</strong> {status}</p>
+                                    {/* Conditionally render Cancel button if status is not 'Delivered' */}
+                                    {status !== 'Delivered' && (
+                                        <button 
+                                            onClick={() => requestCancelOrder(order._id)} 
+                                            className="cancel-button"
+                                        >
+                                            Cancel Order
+                                        </button>
+                                    )}
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             )}

@@ -1,5 +1,3 @@
-/* src/pages/MyOrders.css */
-
 .my-orders-container {
     display: flex;
     flex-direction: column;
@@ -82,28 +80,27 @@ h1 {
     font-size: 1.5rem;
 }
 
-.orders-list ul {
-    list-style: none;
-    padding: 0;
-}
-
-.orders-list li {
+.order-card {
     background-color: #fff;
-    padding: 15px;
+    padding: 20px;
     margin-bottom: 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: 1px sloid #007bff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.orders-list li p {
+.order-card p {
     font-size: 1rem;
     color: #555;
     margin: 5px 0;
 }
 
-.orders-list li button {
+.order-card .cancel-button {
     margin-top: 10px;
-    background-color: #28a745;
+    background-color: #dc3545;
     border: none;
     padding: 8px;
     color: white;
@@ -126,19 +123,18 @@ h1 {
 .cancel-order-form input {
     margin-bottom: 20px;
 }
-/* Add to src/pages/MyOrders.css */
+
+/* Go back button styling */
 .go-back-button {
     position: absolute;
     top: 100px;
     left: 70px;
-    padding: 10px 15px;
+    padding: 10px 20px;
     font-size: 1rem;
     background-color: #007bff;
     color: white;
-    padding:10px 20px;
-    border-radius: 30%; 
+    border-radius: 30%;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
 }
 

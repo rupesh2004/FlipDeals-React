@@ -43,6 +43,7 @@
     animation: fadeIn 0.6s ease forwards; /* Animation for company name */
     font-weight: bold; /* Bold text for emphasis */
     transition: color 0.3s, transform 0.3s; /* Transition for color and scale */
+    color: white;
 }
 
 .footer-company-name:hover {

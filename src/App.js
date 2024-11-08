@@ -13,6 +13,8 @@ import ImageCarousel from './components/Home.js';
 import OrderPage from './components/orderNow.js';
 import OrderConfirmation from './components/OrderConfirmation.js'
 import MyOrders from './components/MyOrders';
+import AboutUs from './components/aboutUs.js';
+import ContacUs from './components/contactUs.js';
 // Load your Stripe public key
 const stripePromise = loadStripe('pk_test_51QHJ9gJ3vYbqgfoF5VLtgqIbh8HGfVHAswEDfBrPwLufDX2xQjRXgvSLHk1MaJZxcUjgOhep9O7e5y2tuAcWpbeb00tAyn8MCX');
 
@@ -33,6 +35,10 @@ function App() {
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/orderConfirmation" element={<OrderConfirmation />} />
             <Route path="/myOrders" element={<MyOrders />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/contact" element={<ContacUs />} />
+
+            
           </Routes>
         </Elements>
         <Footer />

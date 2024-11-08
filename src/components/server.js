@@ -440,6 +440,29 @@ app.post('/api/orders/cancel', async (req, res) => {
   }
 });
 
+
+app.post('/send-email', (req, res) => {
+  const { name, email, subject, message } = req.body;
+
+  // Set up the email options
+  const mailOptions = {
+      from: email,               // Sender's email
+      to: 'flipdeals38@gmail.com', // Receiver's email (FlipDeals)
+      subject: subject,
+      text: `You have received a new message from: \n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`
+  };
+
+  // Send email
+  transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          return res.status(500).json({ message: 'Failed to send email.' });
+      }
+      res.status(200).json({ message: 'Email sent successfully!' });
+  });
+});
+
+
+
 // Start the Server
 const PORT = 5000;
 app.listen(PORT, () => {
