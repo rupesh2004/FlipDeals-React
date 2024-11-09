@@ -100,43 +100,43 @@ const OrderNow = () => {
           <div className="input-section">
             <label>
               Name:
-              <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+              <input type="text" name="name" value={formData.name} onChange={handleChange} required autocomplete="off" />
             </label>
             <label>
               Email:
-              <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+              <input type="email" name="email" value={formData.email} onChange={handleChange} required autocomplete="off" />
             </label>
             <label>
               Contact Number:
-              <input type="text" name="contact" value={formData.contact} onChange={handleChange} required />
+              <input type="text" name="contact" value={formData.contact} onChange={handleChange} required autocomplete="off" />
             </label>
             <label>
               Home No:
-              <input type="text" name="homeNo" value={formData.homeNo} onChange={handleChange} required />
+              <input type="text" name="homeNo" value={formData.homeNo} onChange={handleChange} required autocomplete="off" />
             </label>
             <label>
               Street Name:
-              <input type="text" name="streetName" value={formData.streetName} onChange={handleChange} required />
+              <input type="text" name="streetName" value={formData.streetName} onChange={handleChange} required autocomplete="off" />
             </label>
             <label>
               Village:
-              <input type="text" name="village" value={formData.village} onChange={handleChange} />
+              <input type="text" name="village" value={formData.village} onChange={handleChange}  autocomplete="off"/>
             </label>
             <label>
               Taluka:
-              <input type="text" name="taluka" value={formData.taluka} onChange={handleChange} required />
+              <input type="text" name="taluka" value={formData.taluka} onChange={handleChange} required autocomplete="off"/>
             </label>
             <label>
               District:
-              <input type="text" name="district" value={formData.district} onChange={handleChange} required />
+              <input type="text" name="district" value={formData.district} onChange={handleChange} required autocomplete="off" />
             </label>
             <label>
               State:
-              <input type="text" name="state" value={formData.state} onChange={handleChange} required />
+              <input type="text" name="state" value={formData.state} onChange={handleChange} required autocomplete="off"/>
             </label>
             <label>
               Pin Code:
-              <input type="text" name="pinCode" value={formData.pinCode} onChange={handleChange} required />
+              <input type="text" name="pinCode" value={formData.pinCode} onChange={handleChange} required autocomplete="off"/>
             </label>
           </div>
 

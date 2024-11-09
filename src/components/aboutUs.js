@@ -76,14 +76,14 @@ const AboutUs = () => {
                                 Visit Profile
                             </a>
                         </div>
-                        <div className="team-member">
+                        {/* <div className="team-member">
                             <img src={monal} alt="Monal Sutar - Co-Founder & CTO" />
                             <h3>Monal Sutar</h3>
                             <p>Co-Founder & CTO</p>
                             <a href="https://www.linkedin.com/in/monal-gajanan-sutar-13a9a6235/" target="_blank" rel="noopener noreferrer" className="profile-link">
                                 Visit Profile
                             </a>
-                        </div>
+                        </div> */}
                         {/* Add more team members as needed */}
                     </div>
                 </section>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Services.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faTags, faPercentage, faTruck, faCreditCard, faGift, faHeadset, faStar, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faTags, faPercentage, faTruck, faCreditCard, faHeadset, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 const Services = () => {
     const services = [
@@ -35,7 +35,6 @@ const Services = () => {
             title: "24/7 Customer Support",
             description: "Our dedicated support team is available around the clock to assist with any inquiries or issues."
         },
-        
     ];
 
     const orderSteps = [
@@ -72,6 +71,7 @@ const Services = () => {
             <ul className="order-steps">
                 {orderSteps.map((step, index) => (
                     <li key={index}>
+                        <span className="step-number"></span>
                         <FontAwesomeIcon icon={faCheckCircle} className="check-icon" />
                         <span>{step}</span>
                     </li>
@@ -84,3 +84,4 @@ const Services = () => {
 };
 
 export default Services;
+    
